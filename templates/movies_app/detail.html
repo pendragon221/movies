@@ -1,0 +1,9 @@
+<h1>{{ movie.movie_title }}</h1>
+
+<p>Cast:
+    {% for actor in movie.actor_set.all %}
+    <i>{{ actor.name }} </i>
+    {% endfor %}
+</p>
+
+<p>{{ movie.movie_decription }}</p>
