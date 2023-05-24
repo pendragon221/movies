@@ -3,7 +3,7 @@ from django.db import models
 
 class Movie(models.Model):
     movie_title = models.CharField(max_length=200)
-    movie_decription = models.CharField(max_length=255)
+    movie_description = models.TextField()
     pub_date = models.DateTimeField("date published")
 
     def __str__(self):

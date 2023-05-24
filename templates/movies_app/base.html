@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock title %}</title>
+</head>
+<body>
+<!-- Блок главного меню -->
+    {% block menu %}
+<header>
+    <nav>
+        <ul style="display: flex; list-style-type: none; padding: 0; gap: 15px;">
+            <li><a href="{% url 'movies:index' %}">Главная</a></li>
+        </ul>
+    </nav>
+</header>
+<main style="max-width: 50rem;">
+    <br><br>
+    {% endblock menu %}
+<!-- Конец блока главного меню -->
+<!-- Блок контента -->
+    {% block content %}
+    {% endblock content %}
+<!-- Конец блока контента -->
+</main>
+</body>
+</html>

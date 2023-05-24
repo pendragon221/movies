@@ -1,9 +1,15 @@
+{% extends 'movies_app/base.html' %}
+
+{% block title %}
+{{ movie.movie_title }}
+{% endblock title %}
+
+{% block content %}
 <h1>{{ movie.movie_title }}</h1>
 
-<p>Cast:
-    {% for actor in movie.actor_set.all %}
-    <i>{{ actor.name }} </i>
-    {% endfor %}
+<p>
+    Cast: <i>{{ movie.actor_set.all|join:", "|default:"somebody" }}.</i>
 </p>
 
-<p>{{ movie.movie_decription }}</p>
+<p>{{ movie.movie_description|linebreaks }}</p>
+{% endblock content %}

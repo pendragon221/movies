@@ -1,9 +1,21 @@
+{% extends 'movies_app/base.html' %}
+
+{% block title %}
+Главная | Фильмы
+{% endblock title %}
+
+
+{% block content %}
 {% if latest_movie_list %}
-<ul>
+<ul style="list-style-type: none; padding: 0;">
     {% for movie in latest_movie_list %}
-    <li><a href="{% url 'movies:detail' movie.id %}">{{ movie.movie_title }}</a></li>
+    <li style="background-color: skyblue; padding: 1rem; margin-top: 1rem;">
+        <b><a href="{% url 'movies:detail' movie.id %}">{{ movie.movie_title }}</a></b>
+        <p>{{ movie.movie_description|truncatewords:20 }}</p>
+    </li>
     {% endfor %}
 </ul>
 {% else %}
-<p>No polls are available.</p>
+<p>No movies are available.</p>
 {% endif %}
+{% endblock content %}
