@@ -19,7 +19,7 @@
                 <hr>
             </div>
             <p>{{ movie.movie_description|truncatewords:20 }} <a href="{% url 'movies:detail' movie.id %}"
-                    class="text-blue-400 hover:text-blue-500">read more</a>
+                    class="text-blue-400 hover:text-blue-500 hover:underline"><i>read more</i></a>
             </p>
         </div>
     </li>
