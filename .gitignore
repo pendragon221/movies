@@ -1,3 +1,5 @@
 /node_modules/
 /movies/__pycache__/
 /movies_app/__pycache__/
+/.vscode/
+/static/CACHE/

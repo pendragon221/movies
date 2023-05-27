@@ -13,11 +13,11 @@
     {% endcompress css %}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
     <title>{% block title %}{% endblock title %}</title>
 </head>
 
-<body class="font-roboto bg-slate-100">
+<body class="font-poppins bg-slate-100">
     <header>
         <!-- Блок главного меню -->
         {% block menu %}
@@ -25,7 +25,7 @@
             <ul class="flex ml-2 justify-between sm:justify-normal sm:gap-3 lg:ml-12 xl:ml-24">
                 <li class="flex px-5 flex-col items-center justify-center">
                     <a href="{% url 'movies:index' %}">
-                        <img src="{% static 'src/logo.png' %}" class="w-8" alt="logo">
+                        <img src="{% static 'movies_app/images/logo.png' %}" class="w-8" alt="logo"/>
                     </a>
                 </li>
                 <li><a href="{% url 'movies:index' %}"
@@ -41,7 +41,7 @@
                         class="block mr-5 sm:hidden text-slate-700 py-5 px-2 border-b-2 border-transparent hover:text-black hover:border-b-2 hover:border-indigo-500">Меню</a>
                 </li>
             </ul>
-            <div id="mobile-menu" class="hidden">mobile menu</div>
+            <div id="mobile-menu" class="hidden sm:hidden">mobile menu</div>
         </nav>
         {% endblock menu %}
         <!-- Конец блока главного меню -->
@@ -52,7 +52,7 @@
         {% endblock content %}
         <!-- Конец блока контента -->
     </main>
-    <script src="{% static 'movies_app/script.js' %}"></script>
+    <script src="{% static 'movies_app/scripts/script.js' %}"></script>
 </body>
 
 </html>

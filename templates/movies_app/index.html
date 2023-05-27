@@ -7,20 +7,45 @@
 
 {% block content %}
 {% if latest_movie_list %}
-<ul class="mx-5 flex flex-col lg:w-4/6 sm:mx-24 md:mx-24 lg:mx-32 xl:mx-44">
+<ul class="mx-5 flex flex-col lg:w-4/6 sm:mx-24 md:mx-24 lg:mx-32 xl:mx-44 2xl:max-w-screen-2xl">
     {% for movie in latest_movie_list %}
     <li class="mb-5">
         <div class="p-4 border rounded-sm bg-white flex flex-col justify-left gap-5">
             <div>
                 <a href="{% url 'movies:detail' movie.id %}"
-                    class="block mb-1 text-lg text-blue-600 hover:text-blue-700">
+                    class="block mb-1 text-lg font-bold text-blue-600 hover:text-blue-700">
                     {{ movie.movie_title}}
                 </a>
                 <hr>
             </div>
-            <p>{{ movie.movie_description|truncatewords:20 }} <a href="{% url 'movies:detail' movie.id %}"
-                    class="text-blue-400 hover:text-blue-500 hover:underline"><i>read more</i></a>
-            </p>
+            <div class="flex flex-col gap-5 md:flex-row">
+                <div class="flex justify-center md:w-1/3 2xl:w-auto">
+                {% if movie.image %}
+                <a href="{% url 'movies:detail' movie.id %}">
+                <img src="{{ movie.image.url }}" alt="<{{ movie.title }}.jpg>" class="w-80 xl:w-72 2xl:max-w-none"/>
+                </a>
+                {% else %}
+                <i>&#60;Poster is missing...&#62;</i>
+                {% endif %}
+                </div>
+                <div class="md:w-2/3 2xl:w-auto">
+                    {% if movie.cast.all %}
+                        <p>
+                            <b>Cast:
+                            {% for actor in movie.cast.all|slice:'3' %}
+                            <a href="#" class="text-blue-600 hover:text-blue-700 hover:underline">{{ actor.name }}</a>{% if not forloop.last %}, {% endif %}
+                            {% endfor %}
+                            </b> 
+                        </p>
+                        <br>
+                    {% endif %}
+                    <p class="font-base text-lg">
+                        {{ movie.movie_description|truncatewords:50 }}
+                        <a href="{% url 'movies:detail' movie.id %}"
+                        class="text-blue-600 hover:text-blue-700 hover:underline"><i>Read more</i></a>
+                    </p>
+                </div>
+            </div>
         </div>
     </li>
     {% endfor %}

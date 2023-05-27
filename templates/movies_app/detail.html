@@ -8,7 +8,7 @@
 <h1>{{ movie.movie_title }}</h1>
 
 <p>
-    Cast: <i>{{ movie.actor_set.all|join:", "|default:"somebody" }}.</i>
+    Cast: <i>{{ movie.cast.all|join:", "|default:"somebody" }}.</i>
 </p>
 
 <p>{{ movie.movie_description|linebreaks }}</p>

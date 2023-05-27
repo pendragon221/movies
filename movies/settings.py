@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -37,11 +38,9 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-
     # Other packages
-    'compressor',
-    'debug_toolbar',
-
+    "compressor",
+    "debug_toolbar",
     # Other apps
     "movies_app.apps.MoviesAppConfig",
 ]
@@ -133,14 +132,14 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Compressor settings
 
-COMPRESS_ROOT = BASE_DIR / 'static'
+COMPRESS_ROOT = BASE_DIR / "static"
 
 COMPRESS_ENABLED = True
 
 STATICFILES_FINDERS = (
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'compressor.finders.CompressorFinder'
+    "django.contrib.staticfiles.finders.FileSystemFinder",
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
+    "compressor.finders.CompressorFinder",
 )
 
 
@@ -153,4 +152,10 @@ INTERNAL_IPS = [
 
 if DEBUG:
     import mimetypes
+
     mimetypes.add_type("application/javascript", ".js", True)
+
+
+# Media files
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+MEDIA_URL = "/media/"
