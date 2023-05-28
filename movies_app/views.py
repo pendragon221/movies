@@ -3,7 +3,7 @@ from django.http import HttpResponse, Http404
 from django.template import loader
 from django.views import generic
 
-from .models import Movie
+from .models import Movie, Actor
 
 
 class IndexListView(generic.ListView):
@@ -18,6 +18,13 @@ class IndexListView(generic.ListView):
 class MovieDetailView(generic.DetailView):
     model = Movie
     template_name = "movies_app/detail.html"
+
+
+def actor_detail(request, actor_id):
+    actor = Actor.objects.get(pk=actor_id)
+    context = {"actor": actor}
+    template = "movies_app/actor.html"
+    return render(request, template, context)
 
 
 # def index(request):

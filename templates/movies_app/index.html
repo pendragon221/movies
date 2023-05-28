@@ -22,7 +22,7 @@
                 <div class="flex justify-center md:w-1/3 2xl:w-auto">
                 {% if movie.image %}
                 <a href="{% url 'movies:detail' movie.id %}">
-                <img src="{{ movie.image.url }}" alt="<{{ movie.title }}.jpg>" class="w-80 xl:w-72 2xl:max-w-none"/>
+                <img src="{{ movie.image.url }}" alt="<{{ movie.movie_title }}.jpg>" class="w-80 xl:w-72 2xl:max-w-none"/>
                 </a>
                 {% else %}
                 <i>&#60;Poster is missing...&#62;</i>
@@ -33,7 +33,7 @@
                         <p>
                             <b>Cast:
                             {% for actor in movie.cast.all|slice:'3' %}
-                            <a href="#" class="text-blue-600 hover:text-blue-700 hover:underline">{{ actor.name }}</a>{% if not forloop.last %}, {% endif %}
+                            <a href="{% url 'movies:actor_detail' actor.pk %}" class="text-blue-600 hover:text-blue-700 hover:underline">{{ actor.name }}</a>{% if not forloop.last %}, {% endif %}
                             {% endfor %}
                             </b> 
                         </p>

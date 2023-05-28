@@ -3,6 +3,7 @@ from django.db import models
 
 class Actor(models.Model):
     name = models.CharField(max_length=100)
+    photo = models.ImageField(upload_to="images/%Y/%m/%d/", blank=True)
 
     def __str__(self):
         return self.name
@@ -16,7 +17,7 @@ class Movie(models.Model):
     time_create = models.DateTimeField(auto_now_add=True)
     time_update = models.DateTimeField(auto_now=True)
     is_published = models.BooleanField(default=True)
-    image = models.ImageField(upload_to="photos/%Y/%m/%d/", blank=True)
+    image = models.ImageField(upload_to="images/%Y/%m/%d/", blank=True)
 
     def __str__(self):
         return self.movie_title
