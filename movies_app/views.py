@@ -20,7 +20,6 @@ def movie_list(request, page_num):
         pages_from = page_num - 1
     else:
         pages_from = 1
-        
     if (page_num + 1 < total_pages):
         pages_to = page_num + 1
     else:
