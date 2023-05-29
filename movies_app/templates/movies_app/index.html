@@ -4,13 +4,12 @@
 Главная | Фильмы
 {% endblock title %}
 
-
 {% block content %}
 {% if movie_list %}
 <ul class="mx-5 flex flex-col lg:w-4/6 sm:mx-24 md:mx-24 lg:mx-32 xl:mx-44 2xl:max-w-screen-2xl">
     {% for movie in movie_list %}
     <li class="mb-5">
-        <div class="p-4 border rounded-sm bg-white flex flex-col justify-left gap-5">
+        <div class="p-4 shadow rounded-sm bg-white flex flex-col justify-left gap-5">
             <div>
                 <a href="{% url 'movies:movie-detail' movie.id %}"
                     class="block mb-1 text-lg font-bold text-blue-600 hover:text-blue-700">
@@ -62,7 +61,7 @@
             {% for i in pages %}
             <li>
                 <a href="{% url 'movies:movies' i %}" 
-                class="relative block rounded bg-transparent {% if i == current_page %}bg-slate-300{% endif %} px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 {% if i != current_page %}hover:bg-slate-200{% endif %}  dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white">{{ i }}</a>
+                class="relative block rounded bg-transparent {% if i == current_page %}bg-gray-300{% endif %} px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 {% if i != current_page %}hover:bg-slate-200{% endif %}  dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white">{{ i }}</a>
             </li>
             {% endfor %}
             <li>

@@ -11,13 +11,23 @@ def index(request):
 
     
 def movie_list(request, page_num):
-    posts_on_page = 1
+    posts_on_page = 2
+    template_name = "movies_app/index.html"
     movie_list = Movie.objects.order_by("-pub_date")[(page_num - 1) * posts_on_page:page_num * posts_on_page]
     total_pages = ceil(Movie.objects.all().count() / posts_on_page)
-    template_name = "movies_app/index.html"
+
+    if (page_num - 1 > 0):
+        pages_from = page_num - 1
+    else:
+        pages_from = 1
+    if (page_num + 1 < total_pages):
+        pages_to = page_num + 1
+    else:
+        pages_to = total_pages
+
     context = {
         'movie_list': movie_list,
-        'pages': range(1, total_pages + 1),
+        'pages': range(pages_from, pages_to + 1),
         'total_pages': total_pages,
         'current_page': page_num
     }
