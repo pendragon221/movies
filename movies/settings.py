@@ -40,13 +40,13 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # Other packages
     "compressor",
-    "debug_toolbar",
+    # "debug_toolbar",
     # Other apps
     "movies_app.apps.MoviesAppConfig",
 ]
 
 MIDDLEWARE = [
-    "debug_toolbar.middleware.DebugToolbarMiddleware",
+    # "debug_toolbar.middleware.DebugToolbarMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
