@@ -5,9 +5,8 @@
 {% endblock title %}
 
 {% block content %}
-{% if movie_list %}
 <ul class="mx-5 flex flex-col lg:w-4/6 sm:mx-24 md:mx-24 lg:mx-32 xl:mx-44 2xl:max-w-screen-2xl">
-    {% for movie in movie_list %}
+    {% for movie in page_obj %}
     <li class="mb-5">
         <div class="p-4 shadow rounded-sm bg-white flex flex-col justify-left gap-5">
             <div>
@@ -50,31 +49,6 @@
         </div>
     </li>
     {% endfor %}
-    <nav class="mb-16 pl-4 flex">
-        <ul class="flex">
-            <li>
-                <a href="{% url 'movies:movies' 1 %}" 
-                class="relative block rounded bg-transparent {% if i == current_page %}bg-slate-300{% endif %} px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 {% if i != current_page %}hover:bg-slate-200{% endif %}  dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white">
-                    <span aria-hidden="true">&laquo;</span>
-                </a>
-            </li>
-            {% for i in pages %}
-            <li>
-                <a href="{% url 'movies:movies' i %}" 
-                class="relative block rounded bg-transparent {% if i == current_page %}bg-gray-300{% endif %} px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 {% if i != current_page %}hover:bg-slate-200{% endif %}  dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white">{{ i }}</a>
-            </li>
-            {% endfor %}
-            <li>
-                <a href="{% url 'movies:movies' total_pages %}" 
-                class="relative block rounded bg-transparent {% if i == current_page %}bg-slate-300{% endif %} px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 {% if i != current_page %}hover:bg-slate-200{% endif %}  dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white">
-                    <span aria-hidden="true">&raquo;</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
+    {% include 'movies_app/paginator.html' %}
 </ul>
-
-{% else %}
-<p>No movies are available.</p>
-{% endif %}
 {% endblock content %}

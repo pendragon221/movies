@@ -1,7 +1,7 @@
 {% load static %}
 
 <!-- Блок главного меню -->
-<header class="w-full md:fixed md:top-0 md:left-0 md:right-0 bg-white/90 backdrop-blur-xl border-b radius-sm">
+<header class="w-full text-sm bg-white/90 backdrop-blur-xl border-b radius-sm md:fixed md:top-0 md:left-0 md:right-0">
     <nav class="w-full sm:flex sm:justify-between">
         <ul class="flex ml-2 justify-between sm:justify-normal sm:gap-3 lg:ml-12 xl:ml-24">
             <li class="flex px-5 flex-col items-center justify-center">
@@ -22,8 +22,9 @@
                     class="block mr-5 sm:hidden text-slate-700 py-5 px-2 border-b-2 border-transparent hover:text-black hover:border-b-2 hover:border-indigo-500">Меню</a>
             </li>
         </ul>
-        <div>
+        <div class="flex items-center">
             <a href="#" class="hidden mr-5 sm:block text-slate-700 py-5 px-2 border-b-2 border-transparent hover:text-black hover:border-b-2 hover:border-indigo-500">Войти</a>
+            <a href="#" class="hidden mr-5 sm:block text-slate-700 py-5 px-2 border-b-2 border-transparent hover:text-black hover:border-b-2 hover:border-indigo-500">Регистрация</a>
         </div>
         <div id="mobile-menu" class="hidden sm:hidden">mobile menu</div>
     </nav>

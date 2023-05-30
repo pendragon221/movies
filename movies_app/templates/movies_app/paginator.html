@@ -1,0 +1,32 @@
+<nav class="mb-16 pl-4 flex">
+    <ul class="flex">
+        <li>
+            <a href="{% url 'movies:movies'%}?page=1" 
+            class="relative block rounded bg-transparent px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 {% if i != current_page %}hover:bg-slate-200{% endif %}  dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+        {% if page_obj.has_previous %}
+        <li>
+            <a href="{% url 'movies:movies'%}?page={{page_obj.previous_page_number}}" 
+            class="relative block rounded bg-transparent px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 hover:bg-slate-200  dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white">{{ page_obj.previous_page_number }}</a>
+        </li>
+        {% endif %}
+        <li>
+            <a href="#"
+            class="relative block rounded bg-gray-300 px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 hover:bg-slate-200 dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white">{{ page_obj.number }}</a>
+        </li>
+        {% if page_obj.has_next %}
+        <li>
+            <a href="{% url 'movies:movies'%}?page={{page_obj.next_page_number}}" 
+            class="relative block rounded bg-transparent px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 hover:bg-slate-200  dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white">{{ page_obj.next_page_number }}</a>
+        </li>
+        {% endif %}
+        <li>
+            <a href="{% url 'movies:movies'%}?page={{ page_obj.paginator.num_pages }}" 
+            class="relative block rounded bg-transparent px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 hover:bg-slate-200  dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+    </ul>
+</nav>
