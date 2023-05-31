@@ -22,8 +22,9 @@ from . import settings
 
 urlpatterns = [
     path("__debug__/", include("debug_toolbar.urls")),
-    path("admin/", admin.site.urls),
     path("", include("movies_app.urls")),
+    path("admin/", admin.site.urls),
+    path("accounts/", include("django.contrib.auth.urls")),
 ]
 
 if settings.DEBUG:

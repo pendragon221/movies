@@ -2,6 +2,7 @@ from typing import Any, Dict
 from django.shortcuts import render, redirect, get_object_or_404, get_list_or_404
 from django.http import HttpResponse, Http404
 from django.template import loader
+from django.urls import reverse_lazy
 from django.views import generic
 from django.core.paginator import Paginator
 from django.contrib.auth.views import LoginView
@@ -25,7 +26,7 @@ class MovieDetailView(generic.DetailView):
 
 
 class LoginView(LoginView):
-    next_page = 'movies:index'
+    next_page = reverse_lazy("movies:index")
 
 
 def actor_detail(request, actor_id):
@@ -34,11 +35,14 @@ def actor_detail(request, actor_id):
     template = "movies_app/actor_detail.html"
     return render(request, template, context)
 
+
 def index(request):
-    return redirect('movies:movies')
+    return redirect("movies:movies")
+
 
 def register(request):
-    return HttpResponse('register')
+    return HttpResponse("register")
+
 
 def login(request):
     if request.POST:
@@ -47,7 +51,8 @@ def login(request):
             print(form.cleaned_data)
     else:
         form = LoginForm()
-    return render(request, 'movies_app/login.html', {'form': form})
+    return render(request, "movies_app/login.html", {"form": form})
+
 
 # def index(request):
 #     movie_list = Movie.objects.order_by("-pub_date")[:5]

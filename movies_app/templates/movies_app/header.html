@@ -24,7 +24,7 @@
         </ul>
         <div class="flex items-center">
             {% if user.is_authenticated %}
-            <p>Welcome,&nbsp;</p> 
+            <p class="hidden sm:block">Welcome,&nbsp;</p> 
             <a href="#" class="hidden mr-5 sm:block text-blue-500 hover:text-black hover:underline">
                 {{ user.get_username }}
             </a>
