@@ -4,14 +4,16 @@ from django.http import HttpResponse, Http404
 from django.template import loader
 from django.views import generic
 from django.core.paginator import Paginator
+from django.contrib.auth.views import LoginView
 from math import ceil
 from .models import Movie, Actor
+from .forms import *
 
 
 class MovieListView(generic.ListView):
     model = Movie
     template_name = "movies_app/index.html"
-    paginate_by = 1
+    paginate_by = 3
 
     def get_queryset(self):
         return Movie.objects.order_by("-pub_date")[:5]
@@ -20,6 +22,10 @@ class MovieListView(generic.ListView):
 class MovieDetailView(generic.DetailView):
     model = Movie
     template_name = "movies_app/movie_detail.html"
+
+
+class LoginView(LoginView):
+    next_page = 'movies:index'
 
 
 def actor_detail(request, actor_id):
@@ -31,6 +37,17 @@ def actor_detail(request, actor_id):
 def index(request):
     return redirect('movies:movies')
 
+def register(request):
+    return HttpResponse('register')
+
+def login(request):
+    if request.POST:
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            print(form.cleaned_data)
+    else:
+        form = LoginForm()
+    return render(request, 'movies_app/login.html', {'form': form})
 
 # def index(request):
 #     movie_list = Movie.objects.order_by("-pub_date")[:5]

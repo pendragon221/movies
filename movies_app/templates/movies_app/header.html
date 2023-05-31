@@ -23,8 +23,19 @@
             </li>
         </ul>
         <div class="flex items-center">
-            <a href="#" class="hidden mr-5 sm:block text-slate-700 py-5 px-2 border-b-2 border-transparent hover:text-black hover:border-b-2 hover:border-indigo-500">Войти</a>
-            <a href="#" class="hidden mr-5 sm:block text-slate-700 py-5 px-2 border-b-2 border-transparent hover:text-black hover:border-b-2 hover:border-indigo-500">Регистрация</a>
+            {% if user.is_authenticated %}
+            <p>Welcome,&nbsp;</p> 
+            <a href="#" class="hidden mr-5 sm:block text-blue-500 hover:text-black hover:underline">
+                {{ user.get_username }}
+            </a>
+            {% else %}
+            <a href="{% url 'movies:login' %}" class="hidden mr-5 sm:block text-slate-700 py-5 px-2 border-b-2 border-transparent hover:text-black hover:border-b-2 hover:border-indigo-500">
+                Войти
+            </a>
+            <a href="{% url 'movies:register' %}" class="hidden mr-5 sm:block text-slate-700 py-5 px-2 border-b-2 border-transparent hover:text-black hover:border-b-2 hover:border-indigo-500">
+                Регистрация
+            </a>
+            {% endif %}
         </div>
         <div id="mobile-menu" class="hidden sm:hidden">mobile menu</div>
     </nav>
