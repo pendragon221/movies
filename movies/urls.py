@@ -17,13 +17,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
+from .views import LoginView, LogoutView, RegisterView
 
 from . import settings
 
 urlpatterns = [
     path("__debug__/", include("debug_toolbar.urls")),
-    path("", include("movies_app.urls")),
     path("admin/", admin.site.urls),
+    path("", include("movies_app.urls")),
+    path("accounts/login/", LoginView.as_view(), name='login'),
+    path("accounts/logout/", LogoutView.as_view(), name='logout'),
+    path("accounts/register/", RegisterView.as_view(), name='register'),
     path("accounts/", include("django.contrib.auth.urls")),
 ]
 

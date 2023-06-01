@@ -20,13 +20,12 @@ class MovieListView(generic.ListView):
         return Movie.objects.order_by("-pub_date")[:5]
 
 
-class MovieDetailView(generic.DetailView):
+class MovieDetailView(generic.DetailView, generic.CreateView):
     model = Movie
     template_name = "movies_app/movie_detail.html"
+    form_class = MovieCommentForm
+    success_url = reverse_lazy('movies:movie-detail')
 
-
-class LoginView(LoginView):
-    next_page = reverse_lazy("movies:index")
 
 
 def actor_detail(request, actor_id):
@@ -40,18 +39,18 @@ def index(request):
     return redirect("movies:movies")
 
 
-def register(request):
-    return HttpResponse("register")
+# def register(request):
+#     return HttpResponse("register")
 
 
-def login(request):
-    if request.POST:
-        form = LoginForm(request.POST)
-        if form.is_valid():
-            print(form.cleaned_data)
-    else:
-        form = LoginForm()
-    return render(request, "movies_app/login.html", {"form": form})
+# def login(request):
+#     if request.POST:
+#         form = LoginForm(request.POST)
+#         if form.is_valid():
+#             print(form.cleaned_data)
+#     else:
+#         form = LoginForm()
+#     return render(request, "movies_app/login.html", {"form": form})
 
 
 # def index(request):

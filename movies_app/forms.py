@@ -1,6 +1,8 @@
 from django import forms
+from .models import MovieComment
 
 
-class LoginForm(forms.Form):
-    username = forms.CharField(max_length=32)
-    password = forms.CharField(max_length=100)
+class MovieCommentForm(forms.ModelForm): 
+     class Meta:
+          model = MovieComment
+          fields = ["text"]

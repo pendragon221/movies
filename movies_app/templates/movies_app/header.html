@@ -1,7 +1,7 @@
 {% load static %}
 
 <!-- Блок главного меню -->
-<header class="w-full text-sm bg-white/90 backdrop-blur-xl border-b radius-sm md:fixed md:top-0 md:left-0 md:right-0">
+<header class="w-full bg-white/90 backdrop-blur-xl border-b radius-sm md:fixed md:top-0 md:left-0 md:right-0">
     <nav class="w-full sm:flex sm:justify-between">
         <ul class="flex ml-2 justify-between sm:justify-normal sm:gap-3 lg:ml-12 xl:ml-24">
             <li class="flex px-5 flex-col items-center justify-center">
@@ -10,29 +10,43 @@
                 </a>
             </li>
             <li><a href="{% url 'movies:index' %}"
-                    class="hidden sm:block text-slate-700 py-5 px-2 border-b-2 border-transparent hover:text-black hover:border-b-2 hover:border-indigo-500">Главная</a>
+                    class="hidden sm:block text-slate-700 py-5 px-2 border-b-2 border-transparent hover:text-black hover:border-b-2 hover:border-indigo-500">
+                    Home
+                </a>
             </li>
             <li><a href="{% url 'movies:index' %}"
-                    class="hidden sm:block text-slate-700 py-5 px-2 border-b-2 border-transparent hover:text-black hover:border-b-2 hover:border-indigo-500">Фильмы</a>
+                    class="hidden sm:block text-slate-700 py-5 px-2 border-b-2 border-transparent hover:text-black hover:border-b-2 hover:border-indigo-500">
+                    Movies
+                </a>
             </li>
             <li><a href="{% url 'movies:index' %}"
-                    class="hidden sm:block text-slate-700 py-5 px-2 border-b-2 border-transparent hover:text-black hover:border-b-2 hover:border-indigo-500">Актеры</a>
+                    class="hidden sm:block text-slate-700 py-5 px-2 border-b-2 border-transparent hover:text-black hover:border-b-2 hover:border-indigo-500">
+                    Actors
+                </a>
             </li>
             <li><a href="{% url 'movies:index' %}" id="menu-btn"
-                    class="block mr-5 sm:hidden text-slate-700 py-5 px-2 border-b-2 border-transparent hover:text-black hover:border-b-2 hover:border-indigo-500">Меню</a>
+                    class="block mr-5 sm:hidden text-slate-700 py-5 px-2 border-b-2 border-transparent hover:text-black hover:border-b-2 hover:border-indigo-500">
+                    Меню
+                </a>
             </li>
         </ul>
-        <div class="flex items-center">
+        <div class="mr-7 flex items-center">
             {% if user.is_authenticated %}
             <p class="hidden sm:block">Welcome,&nbsp;</p> 
-            <a href="#" class="hidden mr-5 sm:block text-blue-500 hover:text-black hover:underline">
+            <a href="#" class="hidden sm:block text-blue-500 hover:text-black hover:underline">
                 {{ user.get_username }}
             </a>
+            <div class="ml-5" class="hidden sm:block">
+                <form action="{% url 'logout' %}" method="POST">
+                    {% csrf_token %}
+                    <input type="submit" value="Logout" class="hidden sm:block text-red-500 hover:underline hover:cursor-pointer">
+                </form>
+            </div>
             {% else %}
-            <a href="{% url 'movies:login' %}" class="hidden mr-5 sm:block text-slate-700 py-5 px-2 border-b-2 border-transparent hover:text-black hover:border-b-2 hover:border-indigo-500">
+            <a href="{% url 'login' %}" class="hidden mr-5 sm:block text-slate-700 py-5 px-2 border-b-2 border-transparent hover:text-black hover:border-b-2 hover:border-indigo-500">
                 Войти
             </a>
-            <a href="{% url 'movies:register' %}" class="hidden mr-5 sm:block text-slate-700 py-5 px-2 border-b-2 border-transparent hover:text-black hover:border-b-2 hover:border-indigo-500">
+            <a href="{% url 'register' %}" class="hidden mr-5 sm:block text-slate-700 py-5 px-2 border-b-2 border-transparent hover:text-black hover:border-b-2 hover:border-indigo-500">
                 Регистрация
             </a>
             {% endif %}
