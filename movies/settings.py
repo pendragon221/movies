@@ -26,7 +26,7 @@ SECRET_KEY = "django-insecure-7r*1um$5*5%e-_cmbp!&voqbe6#h4b$^^1oww6d0n0)m+3pse*
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     # "debug_toolbar",
     # Other apps
     "movies_app.apps.MoviesAppConfig",
+    "rest_framework",
 ]
 
 MIDDLEWARE = [
@@ -165,3 +166,14 @@ MEDIA_URL = "/media/"
 # Crispy forms
 CRISPY_ALLOWED_TEMPLATE_PACKS = "tailwind"
 CRISPY_TEMPLATE_PACK = "tailwind"
+
+
+# DRF Settings
+
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly"
+    ]
+}
